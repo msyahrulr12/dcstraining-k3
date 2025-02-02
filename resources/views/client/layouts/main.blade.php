@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DCS Training K3</title>
 
-    <link rel="stylesheet" href="/dist/main.css">
-    <link rel="stylesheet" href="{{ asset('css/flowbite.css') }}">
-    @vite('resources/css/app.css')
+    {{-- <link rel="stylesheet" href="/dist/main.css"> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('css/flowbite.css') }}"> --}}
+    <link rel="icon" href="{{ url('storage/images/logoweb.png') }}">
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-blue-950">
     <!-- Navbar -->

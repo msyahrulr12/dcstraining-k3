@@ -2,35 +2,31 @@
 <div id="carousel indicators-carousel" class="relative w-full" data-carousel="static">
     <!-- Carousel wrapper -->
     <div class="relative overflow-hidden rounded-lg h-[50vh] md:h-[70vh] lg:h-[88vh] aspect-w-1 aspect-h-1">
-        <!-- Item 1 -->
-        <div class="hidden duration-700 ease-in-out h-screen" data-carousel-item="active">
-            <img src="{{ url('storage/images/carousel-1.jpeg') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 h-full object-cover" alt="...">
-            <button type="button" class="btn btn-blue absolute right-3 bottom-3 bg-blue-700 rounded">Hubungi Kami</button>
-        </div>
-        <!-- Item 2 -->
-        <div class="hidden duration-700 ease-in-out h-screen" data-carousel-item>
-            <img src="{{ url('storage/images/carousel-2.jpeg') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 h-full object-cover" alt="...">
-        </div>
-        <!-- Item 3 -->
-        <div class="hidden duration-700 ease-in-out h-screen" data-carousel-item>
-            <img src="{{ url('storage/images/carousel-3.jpeg') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 h-full object-cover" alt="...">
-        </div>
-        <!-- Item 4 -->
-        <div class="hidden duration-700 ease-in-out h-screen" data-carousel-item>
-            <img src="{{ url('storage/images/carousel-1.jpeg') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 h-full object-cover" alt="...">
-        </div>
-        <!-- Item 5 -->
-        <div class="hidden duration-700 ease-in-out h-screen" data-carousel-item>
-            <img src="{{ url('storage/images/carousel-2.jpeg') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 h-full object-cover" alt="...">
-        </div>
+
+        @if ($carousels && count($carousels) > 0)
+
+            @foreach ($carousels as $carousel)
+
+            <div class="hidden duration-700 ease-in-out h-screen" data-carousel-item="active">
+                <img src="{{ $carousel->image_url }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 h-full object-cover" alt="{{ $carousel->name }}">
+                <button type="button" class="btn btn-blue absolute right-3 bottom-3 bg-blue-700 rounded">Hubungi Kami</button>
+            </div>
+
+            @endforeach
+
+        @endif
     </div>
     <!-- Slider indicators -->
     <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+        @if ($carousels && count($carousels) > 0)
+            @for ($i = 0; $i < count($carousels); $i++)
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide {{ $i }}" data-carousel-slide-to="{{ $i }}"></button>
+            @endfor
+        @endif
+        {{-- <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button> --}}
     </div>
     <!-- Slider controls -->
     <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
